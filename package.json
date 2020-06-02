@@ -1,0 +1,24 @@
+{
+  "name": "conversorcsvjson",
+  "version": "1.0.0",
+  "description": "ConverterFilesCSVJSON",
+  "main": "Application.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/NatanaelRazzotto/ConveterCSVJsonNode.git"
+  },
+  "keywords": [
+    "conversor",
+    "files",
+    "csv",
+    "json"
+  ],
+  "author": "Natanael Razzotto",
+  "license": "ISC",
+  "dependencies": {
+    "papaparse": "^5.2.0"
+  }
+}
