@@ -13,8 +13,11 @@ arquivoCSV.quantidadeRegistros()
     })
 arquivoCSV.listaArquivo()
     .then(resultado => {
-        console.log(`Resultado: ${JSON.stringify(resultado)} Total CSV: ${Fila.terminouProcessoCSV}`)
+        console.log(`Resultado: ${JSON.stringify(resultado)} Total CSV: ${Fila.terminouProcessoCSV} TotalHeader ${Fila.filaHeaders}`)
     })
     console.log('teste assincrono')
-    new ParseJSON().ConversaodeCSVJson()//ConverterJson
+   // new ParseJSON().ConversaodeCSVJ()//ConverterJson
+    //Converter
+    //new ParseJSON().TesteLoop()
+     new ParseJSON().ConversaodeCSVJsonTeste()
     new EscritorJSON().EscreverArquivo()//ConverterJson

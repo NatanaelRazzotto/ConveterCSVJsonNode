@@ -5,6 +5,7 @@ const Fila = require('./Fila')
 class FileCSV{
     constructor(arquivo){
         this.nomeFile = arquivo
+        this.LinhaAtual = 0
     }
     quantidadeRegistros(){
         return new Promise((resolve,reject)=>{
@@ -26,11 +27,15 @@ class FileCSV{
                 })
                 
                 rl.on('line', function (line) {
+                 
                     Fila.filaCSV.push(line)
+                
+                    
                 })
     
                 rl.on('close', () => {
                     Fila.terminouProcessoCSV = true
+                    
                     console.log('terminou processo LeituraCSV')
                     resolve({ 'resultado': 'Sucesso' })
                 })
