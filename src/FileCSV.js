@@ -10,6 +10,7 @@ class FileCSV{
     }
     quantidadeRegistros(){
         return new Promise((resolve,reject)=>{
+            try {
             const log = new LogerTempo()
             log.start()
             const contents = fs.readFileSync(this.nomeFile,'utf-8')
@@ -17,6 +18,9 @@ class FileCSV{
             Fila.totalRegistrosCSV = matches.length - 1
             log.endTempo("A")
             resolve(Fila.totalRegistrosCSV)
+        } catch (error) {
+            reject({ 'resultado': 'Erro', error })
+        }
 
         })
     }
