@@ -30,7 +30,6 @@ class FileTime
             
             rl.on('line', function (line) {
                 const linha = line.split(',');
-                console.log("LOgs ")
                 
                 for (let index = 0; index < linha.length; index++) {
                     if (linha[index].match(/A:/))
@@ -98,7 +97,7 @@ class FileTime
 
                     }
                     else {
-                        console.log("Valor informado não corresponde ao esperado: " +linha[index]);
+                     //   console.log("Valor informado não corresponde ao esperado: " +linha[index]);
                     }
                     
                     
@@ -128,7 +127,7 @@ class FileTime
 
             })
         } catch (error) {
-          //  reject({ 'resultado': 'Erro', error })
+            reject({ 'resultado': 'Erro', error })
         }
 
     }

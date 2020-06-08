@@ -9,15 +9,10 @@ class Time{
     };
     endTempo(processo) {
         endTime = new Date();
-        var timeDiff = endTime - startTime; //in ms
-        // strip the ms
+        var timeDiff = endTime - startTime; 
         timeDiff /= 1000;
-      
-        // get seconds 
-        var seconds = Math.round(timeDiff);
-        console.log(seconds + " seconds");
         Fila.filaTime.push(processo+":"+timeDiff)
-        console.log( "tempo " + processo+":"+timeDiff )
+
     }
 
 }

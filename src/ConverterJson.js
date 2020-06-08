@@ -9,133 +9,10 @@ class ConverterJson{
     constructor(){
         this.LinhaAtual = 0
     }
-    ConversaodeCSVJ(){
-        //'C:\\Users\\Casa\\Documents\\TESTES PROGRAMAS CSV\\brasil\\brasil.csv'
-        console.log("testeconver")
-        const FileCSV = 'C:\\Users\\Casa\\Documents\\TESTES PROGRAMAS CSV\\brasil\\brasil.csv'
-        const file = fs.createReadStream(FileCSV);
-        Papa.parse(file, {
-            header: true,
-            step: function(result) {
-              Fila.filaJSON.push(result.data)
-            },
-            complete: function(results, file) {
-              console.log('Complete', Fila.filaJSON.length, 'records.'); 
-              for (let letter of Fila.filaJSON.values) {
-                    console.log(letter);
-              }
-            }
-          });
-    }
-    somar(item) {
-        console.log(item)
-    }
-    TesteLoop(){
-        for (var i = 0; i<2; i++)
-        {
-        setTimeout(function () {
-        console.log("teste"+i)
-        }, 100);
-        }
-    }
-    trimds()
-    {
-        const Continuaiterar = setInterval(() => {
-             if (Fila.filaCSV.length === 0){
-            console.log('Comessou converteParaJSON ' + Fila.filaCSV.length)
-
-            if (Fila.terminouProcessoCSV) {
-                clearInterval(continua)
-            }
-
-        } else {
-            const csv = Fila.filaCSV.shift()
-            console.log('CSV:', csv)
-            const data = Papa.parse(csv,{
-                delimiter: ",",
-                header: true,
-                dynamicTyping: true,
-                transformHeader:function(h) {
-
-                    console.log("========"+h)
-                    h = "nat\"anael"
-                    console.log("++++++++cls"+"\""+h)
-                  return h.trim();
-                },})
-          
-            Fila.filaJSON.push(data)
-            console.log('CSV:', data)
-            console.log('Tamanho CSV: ', Fila.filaJSON.length)
-        }
-    }, 100)
-    console.log('Terminou processo JSON')
-    }
-    ConverterOsArquivos()
-    {
-        while(Fila.terminouProcessoJSON == false)
-        {
-            if ((Fila.filaCSV.length === 0)/*&&(Fila.filaJSON.length===0)*/)
-            { 
-                console.log('Conversor entrou em espera!')
-                if((Fila.terminouProcessoCSV == true))
-                {
-                    console.log('Converteu!')
-                    Fila.terminouProcessoJSON = true
-                    break
-                    //clearInterval(Continuaiterar)
-                }
-                // else
-                // {
-                //     // setTimeout(function () {
-                //     //     console.log(Fila.terminouProcessoCSV)
-                //     //     console.log('Tamanho CSV: ', Fila.filaJSON.length)
-                //     //   }, 100);
-                  
-                //     // console.log(Fila.terminouProcessoCSV)
-                //     console.log('Tamanho CSV: ', Fila.filaJSON.length)
-                //     console.log('Conversor entrou em espera!')
-                // }
-            }
-            else
-            {
-               
-                const elementoaConverter = Fila.filaCSV.shift()
-                console.log("CSV-"+elementoaConverter)
-                const RegistroConvertido = Papa.parse(elementoaConverter,{Headers:true})
-                console.log(RegistroConvertido)
-                console.log("---"+RegistroConvertido.data)
-                Fila.filaJSON.push(RegistroConvertido.data)
-                console.log('Tamanho CSV: ', Fila.filaJSON.length)
-            }
-        }
-    }
     ConversaodeCSVJson(){
         const log = new LogerTempo();
         log.start()
         const Continuaiterar = setInterval(() => {
-            // // if ((Fila.filaCSV.length === 0)&&(Fila.filaJSON.length===0))
-            // // {
-            // //     if((Fila.terminouProcessoCSV))
-            // //     {
-            // //         Fila.terminouProcessoJSON = true
-            // //         clearInterval(Continuaiterar)
-            // //     }
-            // //     else
-            // //     {
-            // //         console.log('Conversor entrou em espera!')
-            // //     }
-            // // }
-            // // else
-            // // {
-               
-            // //     const elementoaConverter = Fila.filaCSV.shift()
-            // //     console.log("CSV-"+elementoaConverter)
-            // //     const RegistroConvertido = Papa.parse(elementoaConverter,{Headers:true})
-            // //     console.log(RegistroConvertido)
-            // //     console.log("---"+RegistroConvertido.data)
-            // //     Fila.filaJSON.push(RegistroConvertido.data)
-            // //     console.log('Tamanho CSV: ', Fila.filaJSON.length)
-            // // }
             if (Fila.filaCSV.length === 0){
             console.log('Comessou converteParaJSON ' + Fila.filaCSV.length)
 
@@ -148,109 +25,68 @@ class ConverterJson{
         } else {
             
             const csv = Fila.filaCSV.shift()
-            console.log('CSV:', csv)
+         //   console.log('CSV:', csv)
             const data = Papa.parse(csv)
           
-            Fila.filaJSON.push(data.data)
+            Fila.filaJSON.push(data.data[0])
             console.log('CSV:', data)
-            console.log('Tamanho CSV: ', Fila.filaJSON.length)
+         //   console.log('Tamanho CSV: ', Fila.filaJSON.length)
         }
-    }, 100)
+    }, 0)
     console.log('Terminou processo JSON')
     }
-    ConversaodeCSVJsonTeste(){
-        const Continuaiterar = setInterval(() => {
-            // // if ((Fila.filaCSV.length === 0)&&(Fila.filaJSON.length===0))
-            // // {
-            // //     if((Fila.terminouProcessoCSV))
-            // //     {
-            // //         Fila.terminouProcessoJSON = true
-            // //         clearInterval(Continuaiterar)
-            // //     }
-            // //     else
-            // //     {
-            // //         console.log('Conversor entrou em espera!')
-            // //     }
-            // // }
-            // // else
-            // // {
-               
-            // //     const elementoaConverter = Fila.filaCSV.shift()
-            // //     console.log("CSV-"+elementoaConverter)
-            // //     const RegistroConvertido = Papa.parse(elementoaConverter,{Headers:true})
-            // //     console.log(RegistroConvertido)
-            // //     console.log("---"+RegistroConvertido.data)
-            // //     Fila.filaJSON.push(RegistroConvertido.data)
-            // //     console.log('Tamanho CSV: ', Fila.filaJSON.length)
-            // // }
-            if (Fila.filaCSV.length === 0){
-            console.log('Comessou converteParaJSON ' + Fila.filaCSV.length)
+    // ConversaodeCSVJsonTeste(){
+    //     const Continuaiterar = setInterval(() => {
+    //         if (Fila.filaCSV.length === 0){
+    //         console.log('Comessou converteParaJSON ' + Fila.filaCSV.length)
 
-            if (Fila.terminouProcessoCSV) {
-                clearInterval(continua)
-            }
+    //         if (Fila.terminouProcessoCSV) {
+    //             clearInterval(continua)
+    //         }
 
-        } else {
-            if(this.LinhaAtual == 0)
-            {
-                const csv = Fila.filaCSV.shift()
-                const header = csv.split(',');
-                for (let index = 0; index < header.length; index++) {
-                    Fila.filaHeaders.push(header[index]);
+    //     } else {
+    //         if(this.LinhaAtual == 0)
+    //         {
+    //             const csv = Fila.filaCSV.shift()
+    //             const header = csv.split(',');
+    //             for (let index = 0; index < header.length; index++) {
+    //                 Fila.filaHeaders.push(header[index]);
                     
-                }
-                console.log(Fila.filaHeaders)
-                console.log ("====================")
-                this.LinhaAtual = 1
+    //             }
+    //             console.log(Fila.filaHeaders)
+    //             console.log ("====================")
+    //             this.LinhaAtual = 1
+    //         }
+    //         else
+    //         {
+    //             const csv = Fila.filaCSV.shift()
+    //             // const data = Papa.parse(csv,{header: ['foo','bar','baz']})
+    //             // console.log(data)
+    //         // console.log('CSV:', csv)
+    //             const data = Papa.parse(csv,{dynamicTyping: true , beforeFirstChunk: function(chunk) {
+    //                 // // "Number,Gender,NameSet,Title,GivenName,Surname,StreetAddress,City,State,ZipCode,CountryFull,EmailAddress,Username,Password,TelephoneNumber,Birthday,CCType,CCNumber,CVV2,CCExpires,NationalID,Color,Kilograms,Centimeters,GUID"
+    //                 var rows = chunk.split(',');
+    //                 console.log("linhas"+rows.length)
+    //             //   console.log(rows)
+    //                 //  var a = chunk[2].Headers
+    //                 //  console.log(a)
+    //                 var resultado = ""
+    //                 for (var c = 1 ; c < Fila.filaHeaders.length; c++)
+    //                 {
+    //                     console.log(c)
+    //                     resultado = resultado +",\""+Fila.filaHeaders[c]+"\":" + rows[c]
+    //                 }
+    //                 console.log(resultado)
+    //                 return resultado;
+    //             },})
+    //             console.log(data)
+    //             Fila.filaJSON.push(data)
+    //         }
 
-            }
-            else
-            {
-      
-
-                const csv = Fila.filaCSV.shift()
-                // const data = Papa.parse(csv,{header: ['foo','bar','baz']})
-                // console.log(data)
-            // console.log('CSV:', csv)
-                const data = Papa.parse(csv,{dynamicTyping: true , beforeFirstChunk: function(chunk) {
-                    // // var a = "Number,Gender,NameSet,Title,GivenName,Surname,StreetAddress,City,State,ZipCode,CountryFull,EmailAddress,Username,Password,TelephoneNumber,Birthday,CCType,CCNumber,CVV2,CCExpires,NationalID,Color,Kilograms,Centimeters,GUID"
-                    // // var rows = chunk.Headers = a
-                    //  var a = new Object()
-                    //  var a 
-                    console.log("fdsfdfd   " +chunk[5])
-                    var rows = chunk.split(',');
-                    console.log("linhas"+rows.length)
-                //   console.log(rows)
-                    //  var a = chunk[2].Headers
-                    //  console.log(a)
-                    var resultado = ""
-                    for (var c = 1 ; c < Fila.filaHeaders.length; c++)
-                    {
-                        console.log(c)
-
-                       
-                        resultado = resultado +",\""+Fila.filaHeaders[c]+"\":" + rows[c]
-                        //console.log(resultado)
-                       // rows[c] = resultado
-                        
-                    //  console.log(rows[c])
-                    }
-                    console.log(resultado)
-                    // var headings = rows[0].toUpperCase();
-                    // console.log(rows[0] + "linha")
-                    // console.log(headings + "Retornio")
-                    // rows[0] = headings;
-                    return resultado/*.join("\r\n")*/;
-                },})
-                console.log("fdsfdsfdsfsdfdsf")
-                console.log(data)
-                Fila.filaJSON.push(data)
-            }
-
-        }
-    }, 100)
-    console.log('Terminou processo JSON')
-    }
+    //     }
+    // }, 100)
+    // console.log('Terminou processo JSON')
+    // }
 
 }
 

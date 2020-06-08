@@ -32,18 +32,14 @@ class FileCSV{
                 })
                 
                 rl.on('line', function (line) {
-                 
                     Fila.filaCSV.push(line)
-                
-                    
                 })
     
                 rl.on('close', () => {
                     log.endTempo("L")
                     Fila.terminouProcessoCSV = true
-                 
-                    console.log('terminou processo LeituraCSV')
-                    resolve({ 'resultado': 'Sucesso' })
+                 console.log('terminou processo LeituraCSV')
+                    resolve({ 'resultado do processo de Leitura': 'Sucesso' })
                 })
             } catch (error) {
                 reject({ 'resultado': 'Erro', error })
